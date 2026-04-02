@@ -656,8 +656,6 @@ function submitCol(c){
   const name=col.name.trim();
   if(!name){ msgEl.innerHTML='<div class="alert a-gold">⚠ Please enter a name in column '+(c+1)+' before submitting.</div>'; return; }
   if(col.preds.some(p=>!p)){ msgEl.innerHTML='<div class="alert a-gold">⚠ Please select 1, X or 2 for every fixture in column '+(c+1)+' ('+name+').</div>'; return; }
-  const dupe=S.week.entries.find(e=>e.name.toLowerCase()===name.toLowerCase());
-  if(dupe){ msgEl.innerHTML='<div class="alert a-red">⚠ "'+name+'" already has an entry. Use a different name.</div>'; return; }
   S.week.entries.push({
     name: name,
     preds: [...col.preds],
