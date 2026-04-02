@@ -415,6 +415,8 @@ table.ent-table{border-collapse:collapse;width:100%;min-width:480px;background:#
 
 <div id="toast" style="opacity:0;pointer-events:none;"></div>
 
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
 <script>
 // ═══════════════════════════════════════
 //  STATE
@@ -447,11 +449,24 @@ function mkCol(){ return {name:'', preds:Array(7).fill(null)}; }
 //  STORAGE
 // ═══════════════════════════════════════
 const SK='gbcc_bcg_v4';
+// Firebase config
+const firebaseConfig = {
+  apiKey: "AIzaSyCnbc9Sbz6fGGnMTlrIVeVMCxB8uBlsc9U",
+  authDomain: "big-cash-game.firebaseapp.com",
+  projectId: "big-cash-game",
+  storageBucket: "big-cash-game.firebasestorage.app",
+  messagingSenderId: "952874306600",
+  appId: "1:952874306600:web:05635a72423f79a146b91d"
+};
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const DOC_REF = db.collection('gamedata').doc('state');
+
 async function loadS(){
   try{
-    const val=localStorage.getItem(SK);
-    if(val){
-      const d=JSON.parse(val);
+    const doc = await DOC_REF.get();
+    if(doc.exists){
+      const d = doc.data();
       S.pw=d.pw||S.pw;
       S.week=d.week||S.week;
       S.history=d.history||[];
@@ -459,7 +474,7 @@ async function loadS(){
       S.finances=d.finances||{};
       S.clubFund=d.clubFund||{total:0,log:[]};
     }
-  }catch(e){}
+  }catch(e){ console.error('Load error:',e); }
   // Always start locked
   S.adminUnlocked=false;
   document.getElementById('adminBtn').classList.remove('on');
@@ -467,8 +482,8 @@ async function loadS(){
 }
 async function saveS(){
   try{
-    localStorage.setItem(SK,JSON.stringify({pw:S.pw,week:S.week,history:S.history,subscribers:S.subscribers,finances:S.finances,clubFund:S.clubFund}));
-  }catch(e){}
+    await DOC_REF.set({pw:S.pw,week:S.week,history:S.history,subscribers:S.subscribers,finances:S.finances,clubFund:S.clubFund});
+  }catch(e){ console.error('Save error:',e); }
 }
 
 // ═══════════════════════════════════════
