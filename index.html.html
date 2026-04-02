@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Big Cash Game – Guide Bridge Con Club</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:#00a846; --green-lt:#e6f7ee; --green-md:#b3e8cc;
+  --red:#e8192c; --red-lt:#fde8ea; --red-md:#f7b3ba;
+  --gold:#f59e0b; --gold-lt:#fff8e6;
+  --blue:#0ea5e9; --blue-lt:#e0f4fd;
+  --off:#f5f7f5; --off2:#eef2ee;
+  --border:#d4e0d4; --border2:#c2d4c2;
+  --text:#1a2e1a; --text2:#3d5c3d; --muted:#7a9a7a;
+  --shadow:0 2px 12px rgba(0,0,0,.1);
+  --shadow-lg:0 8px 32px rgba(0,0,0,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Nunito Sans',sans-serif;background:var(--off);color:var(--text);min-height:100vh;}
+
+/* HEADER */
+header{
+  background:var(--green);
+  position:sticky;top:0;z-index:100;
+  box-shadow:0 4px 20px rgba(0,168,70,.35);
+  overflow:hidden;
+}
+header::before{
+  content:'';position:absolute;inset:0;
+  background:repeating-linear-gradient(
+    -45deg,
+    transparent,transparent 12px,
+    rgba(0,0,0,.06) 12px,rgba(0,0,0,.06) 14px
+  );
+  pointer-events:none;
+}
+.hdr-inner{max-width:1040px;margin:0 auto;padding:0 18px;display:flex;align-items:center;justify-content:space-between;gap:14px;position:relative;}
+.logo-block{padding:16px 0;}
+.logo-club{font-size:10px;font-weight:800;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:2px;}
+.logo-main{font-family:'Anton',sans-serif;font-size:clamp(32px,6vw,52px);letter-spacing:3px;color:#fff;line-height:1;text-transform:uppercase;text-shadow:3px 3px 0 rgba(0,0,0,.15);}
+.logo-main em{color:var(--gold);font-style:normal;}
+.hdr-right{display:flex;align-items:center;gap:12px;}
+.pot-bubble{background:rgba(0,0,0,.3);border:2px solid rgba(255,255,255,.25);border-radius:12px;padding:10px 18px;text-align:center;min-width:120px;}
+.pot-lbl{font-size:9px;font-weight:800;letter-spacing:3px;color:rgba(255,255,255,.8);text-transform:uppercase;display:block;margin-bottom:2px;}
+.pot-val{font-family:'Anton',sans-serif;font-size:clamp(22px,4vw,34px);color:var(--gold);line-height:1;text-shadow:2px 2px 0 rgba(0,0,0,.2);}
+.admin-btn{background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.5);color:#fff;padding:10px 18px;border-radius:10px;font-family:'Nunito Sans',sans-serif;font-weight:800;font-size:13px;cursor:pointer;transition:all .2s;white-space:nowrap;letter-spacing:.5px;}
+.admin-btn:hover{background:rgba(255,255,255,.32);}
+.admin-btn.on{background:#fff;color:var(--green);border-color:#fff;}
+
+/* NAV */
+nav{background:#fff;border-bottom:3px solid var(--border);box-shadow:0 2px 8px rgba(0,0,0,.05);}
+.nav-inner{max-width:1040px;margin:0 auto;padding:0 18px;display:flex;overflow-x:auto;}
+.tab{padding:13px 20px;cursor:pointer;white-space:nowrap;font-family:'Nunito Sans',sans-serif;font-weight:800;font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);border-bottom:4px solid transparent;margin-bottom:-3px;transition:all .2s;}
+.tab:hover{color:var(--text2);}
+.tab.on{color:var(--green);border-bottom-color:var(--green);}
+
+/* MAIN */
+main{max-width:1040px;margin:0 auto;padding:24px 14px 80px;}
+.view{display:none;}.view.on{display:block;}
+
+/* CARDS */
+.card{background:#fff;border:2px solid var(--border);border-radius:14px;padding:20px;margin-bottom:16px;box-shadow:var(--shadow);}
+.card-title{font-size:10px;font-weight:800;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:12px;padding-bottom:10px;border-bottom:2px solid var(--off2);}
+
+/* WEEK BANNER */
+.week-banner{background:linear-gradient(135deg,#00a846 0%,#007a33 100%);border-radius:14px;padding:20px 24px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;box-shadow:0 6px 24px rgba(0,168,70,.28);overflow:hidden;position:relative;}
+.week-banner::after{content:'';position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.05);}
+.wb-title{font-family:'Anton',sans-serif;font-size:20px;color:#fff;letter-spacing:1px;text-transform:uppercase;}
+.wb-meta{font-size:12px;color:rgba(255,255,255,.82);font-weight:700;margin-top:3px;}
+.wb-pot-lbl{font-size:9px;letter-spacing:2px;color:rgba(255,255,255,.68);text-transform:uppercase;font-weight:800;}
+.wb-pot-val{font-family:'Anton',sans-serif;font-size:32px;color:var(--gold);line-height:1;}
+.rollover-tag{background:rgba(255,255,255,.18);border:2px solid rgba(255,255,255,.36);border-radius:18px;padding:4px 12px;font-size:11px;font-weight:800;color:#fff;}
+
+/* PILLS */
+.pill{display:inline-block;padding:3px 10px;border-radius:18px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;}
+.pill-open{background:var(--green-lt);color:var(--green);border:2px solid var(--green-md);}
+.pill-done{background:var(--gold-lt);color:var(--gold);border:2px solid #fcd34d;}
+.pill-setup{background:var(--off2);color:var(--muted);border:2px solid var(--border);}
+
+/* ALERTS */
+.alert{padding:12px 16px;border-radius:10px;margin-bottom:14px;font-size:13px;font-weight:700;display:flex;align-items:flex-start;gap:8px;border:2px solid;}
+.a-green{background:var(--green-lt);border-color:var(--green-md);color:#006b2a;}
+.a-gold{background:var(--gold-lt);border-color:#fcd34d;color:#92600a;}
+.a-red{background:var(--red-lt);border-color:var(--red-md);color:#9b0f1c;}
+.a-blue{background:var(--blue-lt);border-color:#7dd3fc;color:#075985;}
+
+/* BUTTONS */
+.btn{padding:10px 22px;border-radius:9px;border:none;font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:800;letter-spacing:.4px;cursor:pointer;transition:all .2s;text-transform:uppercase;}
+.btn-green{background:var(--green);color:#fff;box-shadow:0 4px 12px rgba(0,168,70,.28);}
+.btn-green:hover{background:#008f3a;transform:translateY(-1px);}
+.btn-green:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+.btn-gold{background:var(--gold);color:#fff;box-shadow:0 4px 12px rgba(245,158,11,.28);}
+.btn-gold:hover{background:#d97706;}
+.btn-ghost{background:#fff;color:var(--text2);border:2px solid var(--border);}
+.btn-ghost:hover{border-color:var(--green);color:var(--green);}
+.btn-red{background:var(--red-lt);color:var(--red);border:2px solid var(--red-md);}
+.btn-red:hover{background:var(--red-md);}
+.btn-sm{padding:6px 13px;font-size:11px;}
+
+/* FORMS */
+.form-lbl{display:block;font-size:10px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px;}
+.form-inp{width:100%;padding:10px 13px;background:var(--off);border:2px solid var(--border);border-radius:8px;color:var(--text);font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:600;outline:none;transition:all .2s;}
+.form-inp:focus{border-color:var(--green);background:#fff;box-shadow:0 0 0 3px var(--green-lt);}
+.form-inp::placeholder{color:var(--muted);}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ENTRY FORM (3 columns side by side)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.entry-area{background:#fff;border:2px solid var(--border);border-radius:14px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:18px;}
+.entry-header{background:var(--green);display:grid;grid-template-columns:160px repeat(3,1fr);border-bottom:2px solid rgba(255,255,255,.2);}
+.entry-header .eh-fix{padding:10px 12px;font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);}
+.entry-header .eh-col{padding:8px 6px;text-align:center;border-left:1px solid rgba(255,255,255,.18);}
+.entry-header .eh-col input.name-inp{
+  width:100%;background:transparent;border:none;border-bottom:2px solid rgba(255,255,255,.5);
+  outline:none;color:#fff;font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:800;
+  text-align:center;padding:3px 2px;transition:border-color .2s;
+}
+.entry-header .eh-col input.name-inp:focus{border-bottom-color:#fff;}
+.entry-header .eh-col input.name-inp::placeholder{color:rgba(255,255,255,.55);}
+.entry-header .eh-col.inactive input.name-inp{opacity:.45;}
+
+/* fixture rows inside entry area */
+.entry-fix-row{display:grid;grid-template-columns:160px repeat(3,1fr);border-bottom:1px solid var(--border);}
+.entry-fix-row:last-child{border-bottom:none;}
+.entry-fix-row:nth-child(even){background:var(--off);}
+.entry-fix-row:nth-child(odd){background:#fff;}
+.ef-label{padding:8px 12px;border-right:2px solid var(--border2);}
+.ef-home{font-weight:600;font-size:13px;color:var(--text);line-height:1.2;}
+.ef-vs{font-size:9px;font-weight:800;letter-spacing:1px;color:var(--muted);margin:1px 0;}
+.ef-away{font-weight:600;font-size:13px;color:var(--text);line-height:1.2;}
+.ef-cell{border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:6px 4px;}
+.ef-cell.inactive{opacity:.55;}
+
+/* THE DROPDOWN */
+.pred-select{
+  appearance:none;-webkit-appearance:none;
+  width:100%;padding:7px 4px;
+  border:2px solid var(--border);border-radius:8px;
+  background:#fff;
+  font-family:'Anton',sans-serif;font-size:20px;
+  text-align:center;cursor:pointer;outline:none;
+  transition:all .2s;color:#ccc;
+}
+.pred-select:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-lt);}
+.pred-select.v1{background:#dbeafe;border-color:var(--blue);color:var(--blue);}
+.pred-select.vX{background:var(--gold-lt);border-color:var(--gold);color:var(--gold);}
+.pred-select.v2{background:var(--red-lt);border-color:var(--red);color:var(--red);}
+/* result states */
+.pred-select.r-ok{background:#d4f5e3 !important;border-color:var(--green) !important;color:var(--green) !important;}
+.pred-select.r-ng{opacity:.3 !important;}
+
+/* submit row */
+.entry-submit-row{
+  display:grid;grid-template-columns:160px repeat(3,1fr);
+  background:var(--off2);border-top:2px solid var(--border);
+}
+.es-label{padding:10px 12px;font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;}
+.es-cell{border-left:1px solid var(--border);display:flex;align-items:center;justify-content:center;padding:8px 6px;}
+.submit-col-btn{
+  width:100%;padding:8px 4px;border-radius:8px;border:none;
+  font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:800;
+  text-transform:uppercase;cursor:pointer;transition:all .2s;
+  background:var(--gold);color:#fff;box-shadow:0 2px 8px rgba(245,158,11,.25);
+}
+.submit-col-btn:hover{background:#d97706;transform:translateY(-1px);}
+.submit-col-btn:disabled{background:var(--off2);color:var(--muted);box-shadow:none;cursor:not-allowed;transform:none;border:2px solid var(--border);}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   EXISTING ENTRIES TABLE (on sheet)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.entries-table-wrap{overflow-x:auto;border-radius:12px;border:2px solid var(--border);box-shadow:var(--shadow);}
+table.ent-table{border-collapse:collapse;width:100%;min-width:480px;background:#fff;}
+.ent-table .col-fix{width:160px;min-width:140px;}
+.ent-table .col-en{width:80px;min-width:70px;}
+.ent-table .row-hdr td{background:var(--green);padding:10px 8px;font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:800;text-align:center;vertical-align:bottom;border:1px solid rgba(255,255,255,.18);}
+.ent-table .row-hdr .fix-lbl{text-align:left;padding-left:12px;color:rgba(255,255,255,.75);font-size:9px;letter-spacing:2px;text-transform:uppercase;}
+.ent-table .row-hdr .name-cell{color:#fff;word-break:break-word;font-size:13px;}
+.ent-table .row-fix td{border:1px solid var(--border);height:54px;vertical-align:middle;}
+.ent-table .row-fix:nth-child(even) td{background:var(--off);}
+.ent-table .row-fix:nth-child(odd) td{background:#fff;}
+.fix-cell{padding:7px 11px !important;background:var(--off2) !important;border-right:3px solid var(--border2) !important;}
+.fix-home{font-weight:600;font-size:13px;color:var(--text);line-height:1.2;}
+.fix-away{font-weight:600;font-size:13px;color:var(--text);line-height:1.2;}
+.fix-vs{font-size:9px;font-weight:800;letter-spacing:1px;color:var(--muted);margin:1px 0;}
+.pred-chip{display:inline-block;width:36px;height:36px;border-radius:8px;font-family:'Anton',sans-serif;font-size:20px;line-height:36px;text-align:center;}
+.chip-1{background:#dbeafe;color:var(--blue);}
+.chip-X{background:var(--gold-lt);color:var(--gold);}
+.chip-2{background:var(--red-lt);color:var(--red);}
+.chip-ok{outline:2px solid var(--green);background:var(--green-lt) !important;color:var(--green) !important;}
+.chip-ng{opacity:.28;}
+.ent-table .row-score td{background:var(--off2);padding:7px 5px;font-size:10px;font-weight:800;text-align:center;color:var(--muted);border:1px solid var(--border);border-top:3px solid var(--border2);}
+.score-lbl-cell{text-align:left !important;padding-left:12px !important;letter-spacing:2px;text-transform:uppercase;}
+.score-big{font-family:'Anton',sans-serif;font-size:24px;color:var(--green);line-height:1;}
+.score-big.top{color:var(--gold);}
+
+/* LEGEND */
+.legend{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:14px;background:#fff;border:2px solid var(--border);border-radius:10px;padding:10px 14px;font-weight:800;font-size:13px;box-shadow:var(--shadow);}
+.leg-item{display:flex;align-items:center;gap:6px;}
+.leg-sw{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-family:'Anton',sans-serif;font-size:15px;}
+.leg-1{background:#dbeafe;color:var(--blue);}
+.leg-X{background:var(--gold-lt);color:var(--gold);}
+.leg-2{background:var(--red-lt);color:var(--red);}
+
+/* LEADERBOARD */
+.lb-table{width:100%;border-collapse:collapse;font-size:14px;}
+.lb-table th{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;padding:8px 12px;border-bottom:2px solid var(--border);text-align:left;background:var(--off2);}
+.lb-table td{padding:10px 12px;border-bottom:1px solid var(--off2);vertical-align:middle;}
+.lb-table tr:hover td{background:var(--off);}
+.lb-table tr.row-win td{background:var(--gold-lt) !important;}
+.lb-table tr.row-top td{background:var(--green-lt);}
+.lb-chip{display:inline-block;padding:3px 8px;border-radius:6px;font-family:'Anton',sans-serif;font-size:14px;margin:1px;}
+.lc-1{background:#dbeafe;color:var(--blue);}.lc-X{background:var(--gold-lt);color:var(--gold);}.lc-2{background:var(--red-lt);color:var(--red);}
+.lc-ok{outline:2px solid var(--green);background:var(--green-lt) !important;color:var(--green) !important;}
+.lc-ng{opacity:.28;}
+
+/* ADMIN */
+.fix-builder{display:flex;flex-direction:column;gap:9px;margin-bottom:16px;}
+.fix-row-b{display:grid;grid-template-columns:26px 1fr 32px 1fr;align-items:center;gap:9px;background:var(--off);border:2px solid var(--border);border-radius:9px;padding:9px 13px;}
+.fix-row-b:focus-within{border-color:var(--green);background:#fff;}
+.fix-n{font-family:'Anton',sans-serif;font-size:18px;color:var(--green);text-align:center;}
+.fix-inp{background:#fff;border:2px solid var(--border);border-radius:7px;padding:8px 10px;color:var(--text);font-family:'Nunito Sans',sans-serif;font-size:14px;font-weight:700;outline:none;transition:all .2s;width:100%;}
+.fix-inp:focus{border-color:var(--green);box-shadow:0 0 0 3px var(--green-lt);}
+.fix-inp::placeholder{color:var(--muted);font-weight:400;}
+.fix-vs2{color:var(--muted);font-size:12px;font-weight:800;text-align:center;}
+.res-grp{display:flex;gap:4px;}
+.res-btn{padding:7px 10px;border-radius:7px;border:2px solid var(--border);background:#fff;color:var(--muted);font-family:'Anton',sans-serif;font-size:14px;cursor:pointer;transition:all .15s;}
+.res-btn:hover{border-color:var(--green);}
+.res-btn.on-1{background:#dbeafe;border-color:var(--blue);color:var(--blue);}
+.res-btn.on-X{background:var(--gold-lt);border-color:var(--gold);color:var(--gold);}
+.res-btn.on-2{background:var(--red-lt);border-color:var(--red);color:var(--red);}
+.mini-t{width:100%;border-collapse:collapse;font-size:13px;}
+.mini-t th{font-size:10px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;padding:7px 10px;border-bottom:2px solid var(--off2);text-align:left;background:var(--off);}
+.mini-t td{padding:8px 10px;border-bottom:1px solid var(--off2);vertical-align:middle;}
+.mini-t tr:hover td{background:var(--off);}
+
+/* HISTORY */
+.hist-card{background:#fff;border:2px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:10px;cursor:pointer;transition:all .2s;box-shadow:var(--shadow);}
+.hist-card:hover{border-color:var(--green);}
+.hist-title{font-family:'Anton',sans-serif;font-size:16px;color:var(--text);letter-spacing:.5px;text-transform:uppercase;}
+.hist-meta{font-size:12px;color:var(--muted);margin-top:4px;font-weight:600;}
+.hist-detail{display:none;margin-top:12px;padding-top:12px;border-top:2px solid var(--off2);}
+.hist-detail.on{display:block;}
+
+/* MODAL */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.48);backdrop-filter:blur(4px);z-index:200;align-items:center;justify-content:center;}
+.overlay.on{display:flex;}
+.modal{background:#fff;border:3px solid var(--border);border-radius:18px;padding:28px;max-width:400px;width:92%;box-shadow:var(--shadow-lg);}
+.modal-title{font-family:'Anton',sans-serif;font-size:24px;color:var(--text);letter-spacing:1px;margin-bottom:5px;text-transform:uppercase;}
+.modal-sub{color:var(--muted);font-size:13px;margin-bottom:20px;font-weight:600;}
+.modal-actions{display:flex;gap:10px;margin-top:16px;}
+
+/* EMPTY */
+.empty{text-align:center;padding:56px 20px;color:var(--muted);}
+.empty-icon{font-size:46px;margin-bottom:12px;}
+.empty-title{font-family:'Anton',sans-serif;font-size:20px;letter-spacing:1px;margin-bottom:8px;color:var(--text2);text-transform:uppercase;}
+
+/* SECTION */
+.section-title{font-family:'Anton',sans-serif;font-size:26px;letter-spacing:1px;color:var(--text);margin-bottom:3px;text-transform:uppercase;}
+.section-sub{color:var(--muted);font-size:13px;margin-bottom:20px;font-weight:600;}
+
+#adminTabEl{display:none !important;}
+#adminTabEl.show{display:block !important;}left:50%;transform:translateX(-50%);background:var(--green);color:#fff;padding:10px 22px;border-radius:22px;font-family:'Nunito Sans',sans-serif;font-size:13px;font-weight:800;z-index:999;transition:opacity .4s;box-shadow:0 4px 16px rgba(0,168,70,.38);}
+
+@media(max-width:600px){
+  .entry-header,.entry-fix-row,.entry-submit-row{grid-template-columns:120px repeat(3,1fr);}
+  .ef-home{font-size:11px;}.ef-away{font-size:10px;}
+  .pred-select{font-size:16px;padding:5px 2px;}
+  main{padding:14px 10px 70px;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hdr-inner">
+    <div class="logo-block">
+      <div class="logo-club">Guide Bridge Con Club</div>
+      <div class="logo-main">Big <em>Cash</em> Game</div>
+    </div>
+    <div class="hdr-right">
+      <div class="pot-bubble">
+        <span class="pot-lbl">This Week's Pot</span>
+        <span class="pot-val" id="hdrPot">£0.00</span>
+      </div>
+      <button class="admin-btn" id="adminBtn" onclick="openAdminModal()">⚙ Admin</button>
+    </div>
+  </div>
+</header>
+
+<nav>
+  <div class="nav-inner">
+    <div class="tab on" onclick="goTab(this,'sheet')">⚽ The Sheet</div>
+    <div class="tab" onclick="goTab(this,'history')">📚 Past Weeks</div>
+    <div class="tab" id="adminTabEl" style="display:none" onclick="goTab(this,'admin')">⚙ Admin</div>
+  </div>
+</nav>
+
+<main>
+
+<!-- SHEET -->
+<div class="view on" id="view-sheet"><div id="sheetContent"></div></div>
+
+<!-- HISTORY -->
+<div class="view" id="view-history">
+  <div class="section-title">Past Weeks</div>
+  <div class="section-sub">Every archived round and winner</div>
+  <div id="historyContent"></div>
+</div>
+
+<!-- ADMIN -->
+<div class="view" id="view-admin">
+  <div class="section-title">Admin Panel</div>
+  <div class="section-sub">Manage fixtures, results and the pot</div>
+
+  <div class="card">
+    <div class="card-title">💰 Pot & Week Settings</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:14px;">
+      <div><label class="form-lbl">Starting Pot (£)</label><input class="form-inp" id="aRollover" type="number" step="0.01" min="0" placeholder="0.00"><div style="font-size:11px;color:var(--muted);margin-top:4px;font-weight:600;">Auto-set from rollover after archive. Only change if needed.</div></div>
+      <div><label class="form-lbl">Entry fee per line (£)</label><input class="form-inp" id="aFee" type="number" step="0.10" min="0.10" value="0.50"></div>
+      <div><label class="form-lbl">Submission Deadline</label><input class="form-inp" id="aDeadline" type="datetime-local"><div style="font-size:11px;color:var(--muted);margin-top:4px;font-weight:600;">Entries are automatically frozen at this date and time.</div></div>
+      <div><label class="form-lbl">Week label</label><input class="form-inp" id="aLabel" placeholder="e.g. Week 12"></div>
+    </div>
+    <div id="livePotDisplay" style="background:var(--green-lt);border:2px solid var(--green-md);border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+      <div>
+        <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:2px;">Live Running Total (backend only)</div>
+        <div id="livePotVal" style="font-family:'Anton',sans-serif;font-size:28px;color:var(--green);line-height:1;">£0.00</div>
+      </div>
+      <div style="font-size:12px;color:var(--text2);font-weight:600;text-align:right;" id="livePotBreakdown"></div>
+    </div>
+    <button class="btn btn-ghost btn-sm" onclick="savePotSettings()">Save Settings</button>
+    <span id="settingsSaved" style="display:none;margin-left:10px;color:var(--green);font-weight:800;font-size:12px;">✓ Saved!</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">🏦 Club Fund</div>
+    <div id="clubFundDisplay"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">⚽ This Week's 7 Fixtures</div>
+    <div class="fix-builder" id="fixBuilder"></div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-green" onclick="publishWeek()">Publish Week</button>
+      <button class="btn btn-ghost" onclick="clearFix()">Clear All</button>
+    </div>
+    <div id="publishMsg" style="margin-top:10px;"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">✅ Enter Results &nbsp;<span style="font-size:10px;font-weight:400;color:var(--muted)">1 = Home Win · X = Draw · 2 = Away Win</span></div>
+    <div id="resultsEntryInner"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">👥 Entries This Week</div>
+    <div id="adminEntries"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">📧 Email Subscribers</div>
+    <div id="subscribersList"></div>
+  </div>
+
+  <div class="card" style="border-color:var(--blue-lt);">
+    <div class="card-title" style="color:#075985;">📋 Copy & Send Fixture Notification</div>
+    <p style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:14px;">When you publish a new week, copy the email addresses and message below, then paste into your own email client (Gmail, Outlook etc.) and send.</p>
+    <div id="emailCopyArea"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">💷 Finances — Creditors & Debtors</div>
+    <div id="financesList"></div>
+  </div>
+
+  <div class="card" style="border-color:var(--red-md);">
+    <div class="card-title" style="color:var(--red);">⚠ End of Week</div>
+    <div style="display:flex;gap:10px;flex-wrap:wrap;">
+      <button class="btn btn-red" onclick="archiveWeek()">Archive & Start New Week</button>
+      <button class="btn btn-red" onclick="resetAll()">Reset Everything</button>
+    </div>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px;font-weight:600;">Archive saves to history, calculates 50% rollover and clears for next week.</p>
+  </div>
+</div>
+
+</main>
+
+<!-- Admin modal -->
+<div class="overlay" id="adminModal">
+  <div class="modal">
+    <div class="modal-title">🔒 Admin Access</div>
+    <div class="modal-sub">Enter the password to manage the Big Cash Game.</div>
+    <label class="form-lbl">Password</label>
+    <input class="form-inp" id="pwInput" type="password" placeholder="Enter password" onkeydown="if(event.key==='Enter')checkPw()">
+    <div id="pwErr" style="color:var(--red);font-size:12px;font-weight:700;display:none;margin-top:7px;">❌ Incorrect password</div>
+    <div class="modal-actions">
+      <button class="btn btn-green" onclick="checkPw()">Enter</button>
+      <button class="btn btn-ghost" onclick="closeAdminModal()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm modal -->
+<div class="overlay" id="confModal">
+  <div class="modal">
+    <div class="modal-title" id="confTitle">Confirm</div>
+    <div class="modal-sub" id="confMsg">Are you sure?</div>
+    <div class="modal-actions">
+      <button class="btn btn-red" id="confYes">Yes, proceed</button>
+      <button class="btn btn-ghost" onclick="closeConf()">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" style="opacity:0;pointer-events:none;"></div>
+
+<script>
+// ═══════════════════════════════════════
+//  STATE
+// ═══════════════════════════════════════
+let S = {
+  adminUnlocked: false,
+  pw: 'jst1506',
+  week: {
+    label:'', deadline:'', fee:0.50, rollover:0, holder:'',
+    fixtures: Array(7).fill(0).map(()=>({home:'',away:''})),
+    results: Array(7).fill(null),
+    entries: [],
+    published: false,
+    status: 'setup'
+  },
+  history: [],
+  subscribers: [],  // [{name, email, joinedAt}]
+  finances: {},     // keyed by email: {name, email, totalOwed, totalPaid, payments:[{date,amount,note}]}
+  clubFund: {total: 0, log: []}  // 50% of each week's entry takings stays here
+};
+
+// Up to 3 columns being filled at once
+// cols = [{name, preds:[7 items, null/'1'/'X'/'2']}]
+let cols = [mkCol(), mkCol(), mkCol()];
+let currentSubscriber = null; // {name, email} — session only, not persisted
+
+function mkCol(){ return {name:'', preds:Array(7).fill(null)}; }
+
+// ═══════════════════════════════════════
+//  STORAGE
+// ═══════════════════════════════════════
+const SK='gbcc_bcg_v4';
+async function loadS(){
+  try{
+    const val=localStorage.getItem(SK);
+    if(val){
+      const d=JSON.parse(val);
+      S.pw=d.pw||S.pw;
+      S.week=d.week||S.week;
+      S.history=d.history||[];
+      S.subscribers=d.subscribers||[];
+      S.finances=d.finances||{};
+      S.clubFund=d.clubFund||{total:0,log:[]};
+    }
+  }catch(e){}
+  // Always start locked
+  S.adminUnlocked=false;
+  document.getElementById('adminBtn').classList.remove('on');
+  document.getElementById('adminTabEl').classList.remove('show');
+}
+async function saveS(){
+  try{
+    localStorage.setItem(SK,JSON.stringify({pw:S.pw,week:S.week,history:S.history,subscribers:S.subscribers,finances:S.finances,clubFund:S.clubFund}));
+  }catch(e){}
+}
+
+// ═══════════════════════════════════════
+//  TABS
+// ═══════════════════════════════════════
+function goTab(el,id){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('on'));
+  el.classList.add('on');
+  document.getElementById('view-'+id).classList.add('on');
+  if(id==='sheet')renderSheet();
+  if(id==='history')renderHistory();
+  if(id==='admin')renderAdmin();
+}
+
+function updPot(){
+  // Header always shows the fixed starting pot set by admin, not the live running total
+  document.getElementById('hdrPot').textContent='£'+parseFloat(S.week.rollover||0).toFixed(2);
+}
+
+// ═══════════════════════════════════════
+//  SHEET VIEW
+// ═══════════════════════════════════════
+function renderSheet(){
+  const el=document.getElementById('sheetContent'), w=S.week;
+
+  if(!w.published){
+    el.innerHTML='<div class="empty"><div class="empty-icon">⚽</div><div class="empty-title">No Active Week Yet</div><p style="font-weight:600">The admin needs to publish this week\'s fixtures first.</p></div>'
+      +'<div style="max-width:520px;margin:24px auto 0;"><div class="card" style="border-color:var(--blue-lt);"><div class="card-title" style="color:#075985;">📧 Get Notified When New Fixtures Are Published</div><p style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:14px;">Sign up with your name and email and we\'ll let you know when each week\'s fixtures are ready.</p><div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px;"><div><label class="form-lbl">Your Name</label><input class="form-inp" id="subName" placeholder="e.g. John Smith" maxlength="40"></div><div><label class="form-lbl">Email Address</label><input class="form-inp" id="subEmail" type="email" placeholder="e.g. john@email.com"></div></div><button class="btn btn-ghost" style="border-color:#7dd3fc;color:#075985;" onclick="addSubscriber()">Sign Me Up</button><div id="subMsg" style="margin-top:10px;"></div></div></div>';
+    return;
+  }
+
+  const pot=w.rollover+w.entries.length*w.fee;
+  const hasR=w.results.some(r=>r!==null);
+  const scores=w.entries.map(e=>{let s=0;if(hasR)e.preds.forEach((p,i)=>{if(w.results[i]&&p===w.results[i])s++;});return s;});
+  const maxS=scores.length?Math.max(...scores):0;
+  const allResults=w.results.every(r=>r!==null);
+  const closed=deadlinePassed();
+  const showNew=!allResults && !closed;
+
+  let banner='';
+  if(allResults && w.entries.length>0){
+    const winners=w.entries.filter((_,i)=>scores[i]===7);
+    if(winners.length) banner='<div class="alert a-gold">🏆 <strong>Winner'+(winners.length>1?'s':'')+': '+winners.map(x=>x.name).join(', ')+'</strong> — all 7 correct! Prize: <strong>£'+pot.toFixed(2)+'</strong></div>';
+    else banner='<div class="alert a-gold">No perfect score this week — <strong>£'+parseFloat((w.rollover+w.entries.length*w.fee*0.5).toFixed(2))+'</strong> carries forward (starting pot + 50% of entry takings). Top score: <strong>'+maxS+'/7</strong></div>';
+  }
+
+  // ── Entry area: gated behind subscription ──
+  const closedBanner=closed?'<div class="alert a-red">🔒 <strong>Entries are now closed</strong> — the deadline of '+fmtDeadline(w.deadline)+' has passed.</div>':'';
+
+  const rulesBox='<div style="background:#fff;border:2px solid var(--border);border-radius:12px;padding:14px 18px;margin-bottom:18px;box-shadow:var(--shadow);">'
+    +'<div style="display:flex;flex-wrap:wrap;gap:8px 20px;align-items:flex-start;">'
+    +'<div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--text2);">🕐 Deadline: <span style="color:'+(closed?'var(--red)':'var(--green)')+'">'+fmtDeadline(w.deadline)+(closed?' (closed)':'')+'</span></div>'
+    +'<div style="display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;color:var(--text2);">💰 Only <span style="color:var(--green)">£'+w.fee.toFixed(2)+'</span> per line</div>'
+    +'<div style="font-size:13px;font-weight:600;color:var(--muted);">🎯 You must get all 7 results correct to win</div>'
+    +'<div style="font-size:13px;font-weight:600;color:var(--muted);">🏆 Multiple winners share the pot equally</div>'
+    +'<div style="font-size:13px;font-weight:600;color:var(--muted);">⚽ If a match is not played, it counts as a Home Win</div>'
+    +'<div style="font-size:13px;font-weight:600;color:var(--muted);">🔄 If no winner, the pot carries forward plus 50% of that week\'s entry takings</div>'
+    +'</div></div>';
+
+  let newEntryHtml='';
+  if(showNew){
+    if(!currentSubscriber){
+      // Not yet subscribed — show sign-up gate
+      newEntryHtml=`<div style="margin-top:22px;">
+        <div class="card" style="border-color:var(--blue-lt);max-width:560px;">
+          <div class="card-title" style="color:#075985;">📧 Sign Up to Enter</div>
+          <p style="font-size:13px;font-weight:600;color:var(--muted);margin-bottom:16px;">To submit your predictions you need to be on our mailing list. Enter your name and email — you'll be notified whenever new fixtures are published.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+            <div><label class="form-lbl">Your Name</label><input class="form-inp" id="subName" placeholder="e.g. John Smith" maxlength="40"></div>
+            <div><label class="form-lbl">Email Address</label><input class="form-inp" id="subEmail" type="email" placeholder="e.g. john@email.com"></div>
+          </div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
+            <button class="btn btn-green" onclick="signUpAndUnlock()">Sign Up & Enter Predictions</button>
+            <span style="font-size:12px;color:var(--muted);font-weight:600;">Already signed up? <button onclick="alreadySignedUp()" style="background:none;border:none;color:var(--green);font-weight:800;font-size:12px;cursor:pointer;text-decoration:underline;">Enter your email to continue</button></span>
+          </div>
+          <div id="subMsg" style="margin-top:10px;"></div>
+        </div>
+      </div>`;
+    } else {
+      // Subscribed — show entry form
+      let ehCols='';
+      for(let c=0;c<3;c++){
+        ehCols+='<div class="eh-col"><input class="name-inp" placeholder="Insert Full Name" maxlength="20" value="'+escHtml(cols[c].name)+'" oninput="cols['+c+'].name=this.value" data-colinput="'+c+'"></div>';
+      }
+      let fixRows='';
+      w.fixtures.forEach((f,fi)=>{
+        let dropCells='';
+        for(let c=0;c<3;c++){
+          const p=cols[c].preds[fi];
+          const r=w.results[fi];
+          let selCls='pred-select'+(p?' v'+p:'');
+          if(hasR&&r&&p) selCls+=p===r?' r-ok':' r-ng';
+          dropCells+='<div class="ef-cell"><select class="'+selCls+'" onchange="setColPred('+c+','+fi+',this.value);styleSelect(this)" data-col="'+c+'" data-fix="'+fi+'"><option value="">–</option><option value="1"'+(p==='1'?' selected':'')+'>1</option><option value="X"'+(p==='X'?' selected':'')+'>X</option><option value="2"'+(p==='2'?' selected':'')+'>2</option></select></div>';
+        }
+        fixRows+='<div class="entry-fix-row"><div class="ef-label"><div class="ef-home">'+(f.home||'TBC')+'</div><div class="ef-vs">v</div><div class="ef-away">'+(f.away||'TBC')+'</div></div>'+dropCells+'</div>';
+      });
+      let submitCells='';
+      for(let c=0;c<3;c++){
+        submitCells+='<div class="es-cell"><button class="submit-col-btn" onclick="submitCol('+c+')">Submit ✓</button></div>';
+      }
+      newEntryHtml=`<div style="margin-top:22px;">
+        <div style="background:var(--green-lt);border:2px solid var(--green-md);border-radius:12px;padding:14px 18px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+          <div>
+            <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:3px;">📋 Sheet Holder — Responsible for Payment</div>
+            <div style="font-size:18px;font-weight:800;color:var(--text);">${currentSubscriber.name}</div>
+            <div style="font-size:12px;color:var(--muted);font-weight:600;margin-top:2px;">${currentSubscriber.email} · All entries on this sheet are billed to you</div>
+          </div>
+          <button onclick="signOut()" style="background:#fff;border:2px solid var(--border);color:var(--muted);padding:7px 14px;border-radius:8px;font-family:'Nunito Sans',sans-serif;font-size:12px;font-weight:800;cursor:pointer;text-transform:uppercase;">Not you? Change</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+          <strong style="font-family:'Anton',sans-serif;font-size:16px;letter-spacing:.5px;text-transform:uppercase;">Add Entries</strong>
+          <span style="font-size:12px;color:var(--muted);font-weight:600;">Up to 3 at a time · £${w.fee.toFixed(2)} per line · Enter a name for each player in the column header</span>
+        </div>
+        <div class="entry-area">
+          <div class="entry-header">
+            <div class="eh-fix" style="font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.7);display:flex;align-items:flex-end;padding-bottom:10px;">FIXTURE</div>
+            ${ehCols}
+          </div>
+          ${fixRows}
+          <div class="entry-submit-row">
+            <div class="es-label">Submit entry</div>
+            ${submitCells}
+          </div>
+        </div>
+        <div id="sheetMsg" style="margin-top:10px;"></div>
+      </div>`;
+    }
+  }
+
+  el.innerHTML=banner+closedBanner+
+    rulesBox+
+    '<div class="legend"><span style="font-size:10px;font-weight:800;letter-spacing:1px;color:var(--muted);text-transform:uppercase;">Mark:</span><span class="leg-item"><span class="leg-sw leg-1">1</span><span style="color:var(--blue)">Home Win</span></span><span style="color:var(--border2);margin:0 4px">·</span><span class="leg-item"><span class="leg-sw leg-X">X</span><span style="color:var(--gold)">Draw</span></span><span style="color:var(--border2);margin:0 4px">·</span><span class="leg-item"><span class="leg-sw leg-2">2</span><span style="color:var(--red)">Away Win</span></span></div>'+
+    newEntryHtml;
+}
+
+function escHtml(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function deadlinePassed(){  if(!S.week.deadline) return false;
+  return new Date()>new Date(S.week.deadline);
+}
+
+function fmtDeadline(dl){
+  if(!dl) return 'Not set';
+  const d=new Date(dl);
+  return d.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'})
+    +' at '+d.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'});
+}
+
+
+
+function setColPred(c,fi,val){
+  cols[c].preds[fi]=val||null;
+  // update styling of select without full re-render
+  const sel=document.querySelector('select[data-col="'+c+'"][data-fix="'+fi+'"]');
+  if(sel) styleSelect(sel);
+}
+
+function styleSelect(sel){
+  const v=sel.value;
+  sel.className='pred-select'+(v?' v'+v:'');
+  const r=S.week.results[parseInt(sel.dataset.fix)];
+  if(r&&v){ sel.classList.add(v===r?'r-ok':'r-ng'); }
+}
+
+function submitCol(c){
+  const col=cols[c];
+  const msgEl=document.getElementById('sheetMsg');
+  if(deadlinePassed()){ msgEl.innerHTML='<div class="alert a-red">🔒 The deadline has passed — entries are now closed for this week.</div>'; return; }
+  const name=col.name.trim();
+  if(!name){ msgEl.innerHTML='<div class="alert a-gold">⚠ Please enter a name in column '+(c+1)+' before submitting.</div>'; return; }
+  if(col.preds.some(p=>!p)){ msgEl.innerHTML='<div class="alert a-gold">⚠ Please select 1, X or 2 for every fixture in column '+(c+1)+' ('+name+').</div>'; return; }
+  const dupe=S.week.entries.find(e=>e.name.toLowerCase()===name.toLowerCase());
+  if(dupe){ msgEl.innerHTML='<div class="alert a-red">⚠ "'+name+'" already has an entry. Use a different name.</div>'; return; }
+  S.week.entries.push({
+    name: name,
+    preds: [...col.preds],
+    paid: false,
+    email: currentSubscriber ? currentSubscriber.email : null,  // sheet holder's email
+    sheetHolder: currentSubscriber ? currentSubscriber.name : null  // sheet holder's name
+  });
+  saveS(); updPot();
+  msgEl.innerHTML='<div class="alert a-green">✅ <strong>'+name+'</strong> entered! Remember to pay £'+S.week.fee.toFixed(2)+' at the club 🤞</div>';
+  cols[c]=mkCol();
+  renderSheet();
+}
+
+// ═══════════════════════════════════════
+//  RESULTS VIEW
+// ═══════════════════════════════════════
+function renderResults(){
+  const el=document.getElementById('resultsContent'), w=S.week;
+  if(!w.published){el.innerHTML='<div class="empty"><div class="empty-icon">📊</div><div class="empty-title">Nothing Yet</div><p style="font-weight:600">Results appear once the week is published.</p></div>';return;}
+  const hasR=w.results.some(r=>r!==null),allR=w.results.every(r=>r!==null),pot=w.rollover+w.entries.length*w.fee;
+  const scored=w.entries.map(e=>{let s=0;if(hasR)e.preds.forEach((p,i)=>{if(w.results[i]&&p===w.results[i])s++;});return{...e,score:s};}).sort((a,b)=>b.score-a.score);
+  const maxS=scored.length?scored[0].score:0,winners=scored.filter(e=>e.score===7);
+
+  const topBanner=allR&&w.entries.length
+    ?(winners.length
+      ?'<div class="alert a-gold" style="font-size:14px">🏆 <strong>Winner'+(winners.length>1?'s':'')+': '+winners.map(x=>x.name).join(', ')+'</strong> — all 7 correct! Prize: <strong>£'+parseFloat(w.rollover||0).toFixed(2)+'</strong></div>'
+      :'<div class="alert a-gold">No perfect score this week — <strong>£'+parseFloat((w.rollover+w.entries.length*w.fee*0.5).toFixed(2))+'</strong> carries forward (starting pot + 50% of entry takings). Top score: <strong>'+maxS+'/7</strong></div>')
+    :(hasR
+      ?'<div class="alert a-blue">ℹ Results partially entered ('+(w.results.filter(r=>r!==null).length)+'/7). Check back after all games!</div>'
+      :'<div class="alert a-blue">ℹ Results not entered yet — check back after the games!</div>');
+
+  let fixList='';
+  w.fixtures.forEach((f,i)=>{
+    const r=w.results[i],label=r==='1'?'Home Win':r==='X'?'Draw':r==='2'?'Away Win':'Not yet entered',bg=r==='1'?'var(--blue-lt)':r==='X'?'var(--gold-lt)':r==='2'?'var(--red-lt)':'var(--off)';
+    fixList+='<div style="display:flex;justify-content:space-between;align-items:center;padding:9px 13px;margin-bottom:5px;border-radius:9px;border:2px solid var(--border);background:'+bg+';"><span style="font-weight:700;font-size:13px">'+f.home+' <span style="color:var(--muted);font-size:11px">v</span> '+f.away+'</span>'+(r?'<span style="display:flex;align-items:center;gap:7px;"><span class="lb-chip lc-'+r+'" style="font-size:17px">'+r+'</span><span style="font-weight:700;font-size:12px;color:var(--text2)">'+label+'</span></span>':'<span style="color:var(--muted);font-weight:600;font-size:12px">–</span>')+'</div>';
+  });
+
+  // Leaderboard — show ALL winners (7/7), then top 3 non-winners if no perfect scores
+  let podium='';
+  if(hasR && scored.length){
+    const medals=['🥇','🥈','🥉'];
+    const winners=scored.filter(e=>e.score===7);
+    const nonWinners=scored.filter(e=>e.score>0&&e.score<7);
+    // Show all winners; if no winners show top 3 non-winners
+    const displayList=winners.length?winners:nonWinners.slice(0,3);
+    if(displayList.length){
+      const title=winners.length?'🏆 Winner'+(winners.length>1?'s — Pot Split Equally':''):'🏅 Top Scores This Week';
+      podium='<div class="card" style="margin-top:16px"><div class="card-title">'+title+'</div>'
+        +'<div style="display:flex;flex-direction:column;gap:8px;">'
+        +displayList.map((e,i)=>{
+          const isWin=e.score===7;
+          const medal=isWin?(winners.length>1?'🏆':medals[0]):(medals[i]||'');
+          return'<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-radius:10px;background:'+(isWin?'var(--gold-lt)':i===0?'var(--green-lt)':'var(--off)')+';border:2px solid '+(isWin?'#fcd34d':i===0?'var(--green-md)':'var(--border)')+';">'
+            +'<span style="font-size:20px;margin-right:10px">'+medal+'</span>'
+            +'<span style="font-weight:800;font-size:15px;flex:1">'+e.name+'</span>'
+            +(e.sheetHolder&&e.sheetHolder!==e.name?'<span style="font-size:11px;font-weight:600;color:var(--muted);background:rgba(0,0,0,.05);padding:2px 8px;border-radius:10px;margin-right:10px;">'+e.sheetHolder+'</span>':'')
+            +'<span style="font-family:\'Anton\',sans-serif;font-size:26px;color:'+(isWin?'var(--gold)':i===0?'var(--green)':'var(--muted)')+'">'+e.score+'</span>'
+            +'<span style="color:var(--muted);font-weight:700;font-size:12px;margin-left:3px">/7</span>'
+            +'</div>';
+        }).join('')
+        +'</div></div>';
+    }
+  }
+
+  // Admin-only full leaderboard
+  const adminLb=S.adminUnlocked&&scored.length
+    ?'<div class="card" style="margin-top:16px"><div class="card-title">👥 All Entries & Scores (Admin Only)</div><table class="lb-table"><thead><tr><th>#</th><th>Name</th><th>Picks</th>'+(hasR?'<th>Score</th>':'')+'</tr></thead><tbody>'+scored.map((e,idx)=>{const isWin=hasR&&e.score===7,isTop=hasR&&e.score===maxS&&maxS>0;return'<tr class="'+(isWin?'row-win':isTop?'row-top':'')+'"><td style="font-weight:800;color:var(--muted)">'+(isTop&&hasR?'🥇':idx+1)+'</td><td style="font-weight:800">'+e.name+'</td><td>'+e.preds.map((p,i)=>{let cls='';if(hasR&&w.results[i])cls=p===w.results[i]?' lc-ok':' lc-ng';return'<span class="lb-chip lc-'+p+cls+'">'+p+'</span>';}).join('')+'</td>'+(hasR?'<td><span class="score-big '+(isTop?'top':'')+'" style="font-size:22px">'+e.score+'</span><span style="color:var(--muted);font-weight:700;font-size:10px">/7</span></td>':'')+'</tr>';}).join('')+'</tbody></table></div>'
+    :'';
+
+  el.innerHTML=topBanner+
+    '<div class="card"><div class="card-title">Fixture Results</div>'+fixList+'</div>'+
+    podium+
+    adminLb;
+}
+
+// ═══════════════════════════════════════
+//  HISTORY
+// ═══════════════════════════════════════
+function renderHistory(){
+  const el=document.getElementById('historyContent');
+  if(!S.history.length){el.innerHTML='<div class="empty"><div class="empty-icon">📚</div><div class="empty-title">No History Yet</div><p style="font-weight:600">Completed weeks are saved here.</p></div>';return;}
+  el.innerHTML=[...S.history].reverse().map((w,hi)=>{
+    const pot=w.rollover+w.entries.length*w.fee,hasR=w.results.some(r=>r!==null);
+    const scored=w.entries.map(e=>{let s=0;if(hasR)e.preds.forEach((p,i)=>{if(w.results[i]&&p===w.results[i])s++;});return{...e,score:s};}).sort((a,b)=>b.score-a.score);
+    const wins=scored.filter(e=>e.score===7),winTxt=wins.length?'🏆 '+wins.map(x=>x.name+(x.sheetHolder&&x.sheetHolder!==x.name?' ('+x.sheetHolder+')':'')).join(', '):'No winner — rolled over';
+    const medals=['🥇','🥈','🥉'];
+    const histWinners=hasR?scored.filter(e=>e.score===7):[];
+    const histNonWinners=hasR?scored.filter(e=>e.score>0&&e.score<7):[];
+    const top3=histWinners.length?histWinners:histNonWinners.slice(0,3);
+    const top3Title=histWinners.length?'🏆 Winner'+(histWinners.length>1?'s':''):'Top Scores';
+    const top3Html=top3.length?'<div style="margin-bottom:12px;"><div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">'+top3Title+'</div>'+top3.map((e,i)=>{const isWin=e.score===7;const medal=isWin?(histWinners.length>1?'🏆':medals[0]):(medals[i]||'');return'<div style="display:flex;align-items:center;justify-content:space-between;padding:7px 12px;border-radius:8px;margin-bottom:4px;background:'+(isWin?'var(--gold-lt)':i===0?'var(--green-lt)':'var(--off)')+';border:1px solid '+(isWin?'#fcd34d':i===0?'var(--green-md)':'var(--border)')+'"><span style="display:flex;align-items:center;gap:8px;">'+medal+' <strong>'+e.name+'</strong>'+(e.sheetHolder&&e.sheetHolder!==e.name?'<span style="font-size:11px;font-weight:600;color:var(--muted);background:var(--off2);padding:2px 8px;border-radius:10px;border:1px solid var(--border);">Sheet Holder: '+e.sheetHolder+'</span>':'')+'</span><span style="font-family:\'Anton\',sans-serif;font-size:20px;color:'+(isWin?'var(--gold)':'var(--green)')+'">'+e.score+'/7</span></div>';}).join('')+'</div>':'';
+    const adminDetail=S.adminUnlocked?'<div style="margin-top:8px;"><div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:8px;">All Entries</div>'+scored.slice(0,20).map((e,i)=>'<div style="display:flex;justify-content:space-between;align-items:center;padding:5px 0;border-bottom:1px solid var(--off2);font-size:13px;"><span style="font-weight:700">'+(i+1)+'. '+e.name+(e.sheetHolder&&e.sheetHolder!==e.name?' <span style="font-size:11px;font-weight:600;color:var(--muted)">(Sheet: '+e.sheetHolder+')</span>':'')+'</span><span style="color:var(--muted);font-weight:600">'+(hasR?e.score+'/7':'no results')+'</span></div>').join('')+'</div>':'';
+    return'<div class="hist-card" onclick="toggleHist('+hi+')"><div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:7px;"><div><div class="hist-title">'+(w.label||'Week')+'</div><div class="hist-meta">'+w.entries.length+' entries · Pot £'+parseFloat(w.rollover||0).toFixed(2)+' · '+winTxt+'</div></div><span class="pill pill-done">Archived</span></div><div class="hist-detail" id="hd-'+hi+'">'+top3Html+adminDetail+'</div></div>';
+  }).join('');
+}
+function toggleHist(hi){document.getElementById('hd-'+hi).classList.toggle('on');}
+
+// ═══════════════════════════════════════
+//  FINANCES
+// ═══════════════════════════════════════
+function renderClubFund(){
+  const el=document.getElementById('clubFundDisplay');
+  if(!el) return;
+  const cf=S.clubFund||{total:0,log:[]};
+  el.innerHTML=
+    '<div style="display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-bottom:16px;">'
+    +'<div style="background:var(--green-lt);border:2px solid var(--green-md);border-radius:12px;padding:14px 22px;text-align:center;">'
+    +'<div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:4px;">Total Club Fund</div>'
+    +'<div style="font-family:\'Anton\',sans-serif;font-size:32px;color:var(--green);">£'+cf.total.toFixed(2)+'</div>'
+    +'<div style="font-size:11px;color:var(--green);font-weight:600;margin-top:2px;">50% of all entry takings</div>'
+    +'</div>'
+    +'<div style="font-size:13px;font-weight:600;color:var(--muted);max-width:360px;">This is the club\'s share — 50% of each week\'s entry money, kept separately from the prize pot. It never gets paid out as winnings.</div>'
+    +'</div>'
+    +(cf.log.length
+      ?'<div style="overflow-x:auto"><table class="mini-t"><thead><tr><th>Week</th><th>Date</th><th style="text-align:right">Entries</th><th style="text-align:right">Takings</th><th style="text-align:right">Club\'s 50%</th></tr></thead><tbody>'
+        +[...cf.log].reverse().map(l=>'<tr>'
+          +'<td style="font-weight:700">'+escHtml(l.week)+'</td>'
+          +'<td style="color:var(--muted)">'+l.date+'</td>'
+          +'<td style="text-align:right">'+l.entries+'</td>'
+          +'<td style="text-align:right;font-weight:600">£'+parseFloat(l.takings).toFixed(2)+'</td>'
+          +'<td style="text-align:right;font-weight:800;color:var(--green)">£'+parseFloat(l.clubShare).toFixed(2)+'</td>'
+          +'</tr>').join('')
+        +'</tbody></table></div>'
+      :'<p style="color:var(--muted);font-size:13px;font-weight:600;">No weeks archived yet. The club fund builds automatically each time you archive a week.</p>');
+}
+
+function renderFinances(){
+  const el=document.getElementById('financesList');
+  if(!el) return;
+
+  // Sync finance record names from subscriber list
+  S.subscribers.forEach(s=>{
+    if(S.finances[s.email]) S.finances[s.email].name=s.name;
+  });
+
+  // Build list from subscribers, merging any finance records
+  const rows=S.subscribers.map(s=>{
+    const f=S.finances[s.email]||{totalOwed:0,totalPaid:0,payments:[]};
+    const balance=parseFloat((f.totalPaid-f.totalOwed).toFixed(2));
+    return{name:s.name,email:s.email,totalOwed:f.totalOwed||0,totalPaid:f.totalPaid||0,balance,payments:f.payments||[]};
+  });
+
+  // Also show anyone in finances not in subscribers
+  Object.values(S.finances).forEach(f=>{
+    if(!S.subscribers.find(s=>s.email===f.email)){
+      const balance=parseFloat((f.totalPaid-f.totalOwed).toFixed(2));
+      rows.push({name:f.name,email:f.email,totalOwed:f.totalOwed||0,totalPaid:f.totalPaid||0,balance,payments:f.payments||[]});
+    }
+  });
+
+  // Count unlinked entries this week (no email attached)
+  const unlinked=S.week.entries.filter(e=>!e.email).length;
+  const unlinkedNote=unlinked>0?'<div class="alert a-gold" style="margin-bottom:14px;">⚠ <strong>'+unlinked+' entr'+(unlinked===1?'y':'ies')+' this week</strong> '+(unlinked===1?'has':'have')+' no email linked and won\'t appear in finances. These were submitted without signing up via the mailing list.</div>':'';
+
+  if(!rows.length){el.innerHTML=unlinkedNote+'<p style="color:var(--muted);font-weight:600;font-size:13px;">No financial records yet. Records build automatically as subscribers submit entries and weeks are archived.</p>';return;}
+
+  // Outstanding = only people with negative balance (owe money)
+  // In Credit = only people with positive balance (paid ahead)
+  // Net Position = total paid - total owed across everyone
+  const totalOutstanding=parseFloat(rows.filter(r=>r.balance<0).reduce((a,r)=>a+Math.abs(r.balance),0).toFixed(2));
+  const totalInCredit=parseFloat(rows.filter(r=>r.balance>0).reduce((a,r)=>a+r.balance,0).toFixed(2));
+  const netPosition=parseFloat((totalInCredit-totalOutstanding).toFixed(2));
+  const subOptions=rows.map(r=>'<option value="'+escHtml(r.email)+'">'+escHtml(r.name)+' ('+escHtml(r.email)+')</option>').join('');
+
+  el.innerHTML=unlinkedNote+
+    // Summary bar
+    '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px;">'
+    +'<div style="background:var(--red-lt);border:2px solid var(--red-md);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:4px;">Outstanding</div><div style="font-family:\'Anton\',sans-serif;font-size:24px;color:var(--red);">£'+totalOutstanding.toFixed(2)+'</div><div style="font-size:11px;color:var(--red);font-weight:600;margin-top:2px;">Owed to the club</div></div>'
+    +'<div style="background:var(--green-lt);border:2px solid var(--green-md);border-radius:10px;padding:12px;text-align:center;"><div style="font-size:10px;font-weight:800;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:4px;">In Credit</div><div style="font-family:\'Anton\',sans-serif;font-size:24px;color:var(--green);">£'+totalInCredit.toFixed(2)+'</div><div style="font-size:11px;color:var(--green);font-weight:600;margin-top:2px;">Paid ahead or overpaid</div></div>'
+    +'<div style="background:'+(netPosition>=0?'var(--green-lt)':'var(--red-lt)')+';border:2px solid '+(netPosition>=0?'var(--green-md)':'var(--red-md)')+';border-radius:10px;padding:12px;text-align:center;"><div style="font-size:10px;font-weight:800;letter-spacing:2px;color:'+(netPosition>=0?'var(--green)':'var(--red)')+';text-transform:uppercase;margin-bottom:4px;">Net Position</div><div style="font-family:\'Anton\',sans-serif;font-size:24px;color:'+(netPosition>=0?'var(--green)':'var(--red)')+';">'+( netPosition>=0?'+':'')+netPosition.toFixed(2)+'</div><div style="font-size:11px;font-weight:600;margin-top:2px;color:'+(netPosition>=0?'var(--green)':'var(--red)')+'">'+(netPosition>=0?'Club is ahead':'Club is owed money')+'</div></div>'
+    +'</div>'
+
+    // Add payment form
+    +'<div style="background:var(--off);border:2px solid var(--border);border-radius:10px;padding:14px;margin-bottom:16px;">'
+    +'<div style="font-size:11px;font-weight:800;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:10px;">Record a Payment</div>'
+    +'<div style="display:grid;grid-template-columns:2fr 1fr 2fr auto;gap:8px;align-items:end;">'
+    +'<div><label class="form-lbl">Person</label><select class="form-inp" id="finEmail" style="padding:9px 12px;"><option value="">Select person...</option>'+subOptions+'</select></div>'
+    +'<div><label class="form-lbl">Amount (£)</label><input class="form-inp" id="finAmount" type="number" step="0.50" min="0.50" placeholder="0.00"></div>'
+    +'<div><label class="form-lbl">Note (optional)</label><input class="form-inp" id="finNote" placeholder="e.g. 4 weeks cash"></div>'
+    +'<button class="btn btn-green btn-sm" onclick="recordPayment()" style="white-space:nowrap;">Record ✓</button>'
+    +'</div>'
+    +'<div id="finMsg" style="margin-top:8px;"></div>'
+    +'</div>'
+
+    // Per-person table
+    +'<div style="overflow-x:auto;"><table class="mini-t"><thead><tr>'
+    +'<th>Name</th><th>Email</th><th style="text-align:right">Total Owed</th><th style="text-align:right">Total Paid</th><th style="text-align:right">Balance</th><th>Payment History</th><th></th>'
+    +'</tr></thead><tbody>'
+    +rows.sort((a,b)=>a.balance-b.balance).map(r=>{
+      const isDebt=r.balance<0,isCred=r.balance>0;
+      return'<tr style="background:'+(isDebt?'var(--red-lt)':isCred?'var(--green-lt)':'')+';">'
+        +'<td style="font-weight:700">'+escHtml(r.name||'Unknown')+'</td>'
+        +'<td style="color:var(--muted);font-size:12px">'+escHtml(r.email)+'</td>'
+        +'<td style="text-align:right;font-weight:700;color:var(--red)">£'+(r.totalOwed||0).toFixed(2)+'</td>'
+        +'<td style="text-align:right;font-weight:700;color:var(--green)">£'+(r.totalPaid||0).toFixed(2)+'</td>'
+        +'<td style="text-align:right;font-family:\'Anton\',sans-serif;font-size:18px;color:'+(isDebt?'var(--red)':isCred?'var(--green)':'var(--muted)')+';">'+(isCred?'+':'')+r.balance.toFixed(2)+'</td>'
+        +'<td style="font-size:11px;color:var(--muted);">'+(r.payments&&r.payments.length?r.payments.slice(-3).map(p=>'£'+p.amount.toFixed(2)+(p.note?' ('+p.note+')':'')).join(', '):'–')+'</td>'
+        +'<td><button class="btn btn-red btn-sm" style="padding:3px 9px;font-size:11px;white-space:nowrap;" onclick="resetBalance(\''+escHtml(r.email)+'\')">Reset</button></td>'
+        +'</tr>';
+    }).join('')
+    +'</tbody></table></div>'
+    +'<p style="font-size:11px;color:var(--muted);margin-top:8px;font-weight:600;">Use Reset to zero out a person\'s record if the balance is incorrect due to historic data issues.</p>';
+}
+
+function resetBalance(email){
+  confirm2('Reset balance for '+escHtml(S.finances[email]?S.finances[email].name:email)+'?',
+    'This zeros out their owed, paid and payment history. Use this to correct bad data.',
+    ()=>{
+      if(S.finances[email]){
+        S.finances[email].totalOwed=0;
+        S.finances[email].totalPaid=0;
+        S.finances[email].payments=[];
+      }
+      saveS();
+      renderFinances();
+      showToast('Balance reset for '+escHtml(email));
+    }
+  );
+}
+
+function recordPayment(){
+  const email=document.getElementById('finEmail').value;
+  const amount=parseFloat(document.getElementById('finAmount').value);
+  const note=document.getElementById('finNote').value.trim();
+  const msgEl=document.getElementById('finMsg');
+  if(!email){msgEl.innerHTML='<div class="alert a-gold">⚠ Please select a person.</div>';return;}
+  if(!amount||amount<=0){msgEl.innerHTML='<div class="alert a-gold">⚠ Please enter an amount.</div>';return;}
+  if(!S.finances[email]){
+    const sub=S.subscribers.find(s=>s.email===email);
+    S.finances[email]={name:sub?sub.name:email,email,totalOwed:0,totalPaid:0,payments:[]};
+  }
+  S.finances[email].totalPaid=parseFloat((S.finances[email].totalPaid+amount).toFixed(2));
+  S.finances[email].payments.push({date:new Date().toLocaleDateString('en-GB'),amount,note});
+  saveS();
+  msgEl.innerHTML='<div class="alert a-green">✅ Payment of £'+amount.toFixed(2)+' recorded for '+escHtml(S.finances[email].name)+'</div>';
+  document.getElementById('finAmount').value='';
+  document.getElementById('finNote').value='';
+  renderFinances();
+}
+
+function addManualDebt(email, amount){
+  if(!S.finances[email]) return;
+  S.finances[email].totalOwed=parseFloat((S.finances[email].totalOwed+amount).toFixed(2));
+  saveS();
+  renderFinances();
+}
+
+
+function signUpAndUnlock(){
+  const name=document.getElementById('subName').value.trim();
+  const email=document.getElementById('subEmail').value.trim().toLowerCase();
+  const msgEl=document.getElementById('subMsg');
+  if(!name){msgEl.innerHTML='<div class="alert a-gold">⚠ Please enter your name.</div>';return;}
+  if(!email||!email.includes('@')||!email.includes('.')){msgEl.innerHTML='<div class="alert a-gold">⚠ Please enter a valid email address.</div>';return;}
+  // Add to subscribers if not already there
+  if(!S.subscribers.find(s=>s.email===email)){
+    S.subscribers.push({name,email,joinedAt:Date.now()});
+    saveS();
+  }
+  currentSubscriber={name,email};
+  renderSheet();
+}
+
+function alreadySignedUp(){
+  const email=prompt('Enter the email address you signed up with:');
+  if(!email) return;
+  const found=S.subscribers.find(s=>s.email===email.trim().toLowerCase());
+  if(found){
+    currentSubscriber={name:found.name,email:found.email};
+    renderSheet();
+  } else {
+    alert('No account found for that email. Please sign up first.');
+  }
+}
+
+function signOut(){
+  currentSubscriber=null;
+  renderSheet();
+}
+
+function addSubscriber(){ signUpAndUnlock(); } // legacy alias
+
+function renderSubscribersList(){
+  const el=document.getElementById('subscribersList');
+  if(!el)return;
+  if(!S.subscribers.length){el.innerHTML='<p style="color:var(--muted);font-weight:600;font-size:13px;">No subscribers yet.</p>';return;}
+  el.innerHTML='<table class="mini-t"><thead><tr><th>#</th><th>Name</th><th>Email</th><th></th></tr></thead><tbody>'+
+    S.subscribers.map((s,i)=>'<tr><td style="color:var(--muted);font-weight:700">'+(i+1)+'</td><td style="font-weight:700">'+s.name+'</td><td style="color:var(--text2)">'+s.email+'</td><td><button class="btn btn-red btn-sm" style="padding:3px 9px;font-size:11px" onclick="removeSub('+i+')">✕</button></td></tr>').join('')+
+  '</tbody></table>'+
+  '<div style="font-size:12px;color:var(--muted);margin-top:8px;font-weight:600;">'+S.subscribers.length+' subscriber'+(S.subscribers.length===1?'':'s')+'</div>';
+}
+
+function removeSub(i){S.subscribers.splice(i,1);saveS();renderSubscribersList();renderEmailCopyArea();}
+
+function renderEmailCopyArea(){
+  const el=document.getElementById('emailCopyArea');
+  if(!el)return;
+  const w=S.week;
+  if(!S.subscribers.length){el.innerHTML='<p style="font-size:13px;font-weight:600;color:var(--muted);">No subscribers signed up yet.</p>';return;}
+  const emails=S.subscribers.map(s=>s.email).join(', ');
+  const fixureLines=w.published?w.fixtures.map((f,i)=>(i+1)+'. '+f.home+' v '+f.away).join('\n'):'(publish the week first to populate fixtures)';
+  const subject='Big Cash Game – '+(w.label||'New Week')+(w.deadline?' – Deadline: '+fmtDeadline(w.deadline):'');
+  const body=`Hi everyone,
+
+This week's Big Cash Game fixtures are now up!
+
+${fixureLines}
+
+Deadline: ${w.deadline?fmtDeadline(w.deadline):'check the app'}
+Entry fee: £${w.fee.toFixed(2)} per line
+Pot this week: £${parseFloat(w.rollover||0).toFixed(2)}
+
+Remember – you need all 7 correct to win!
+
+Good luck,
+Guide Bridge Con Club`;
+
+  el.innerHTML=
+    '<div style="margin-bottom:12px;">'
+    +'<div class="form-lbl">To: (paste into BCC field)</div>'
+    +'<div style="display:flex;gap:8px;align-items:flex-start;">'
+    +'<textarea id="copyEmails" style="flex:1;padding:10px 12px;background:var(--off);border:2px solid var(--border);border-radius:8px;font-family:\'Nunito Sans\',sans-serif;font-size:13px;color:var(--text);resize:vertical;min-height:56px;outline:none;" readonly>'+emails+'</textarea>'
+    +'<button class="btn btn-ghost btn-sm" onclick="copyText(\'copyEmails\',this)">Copy</button>'
+    +'</div></div>'
+    +'<div style="margin-bottom:12px;">'
+    +'<div class="form-lbl">Subject line</div>'
+    +'<div style="display:flex;gap:8px;">'
+    +'<input id="copySubject" style="flex:1;padding:10px 12px;background:var(--off);border:2px solid var(--border);border-radius:8px;font-family:\'Nunito Sans\',sans-serif;font-size:13px;color:var(--text);outline:none;" readonly value="'+escHtml(subject)+'">'
+    +'<button class="btn btn-ghost btn-sm" onclick="copyText(\'copySubject\',this)">Copy</button>'
+    +'</div></div>'
+    +'<div>'
+    +'<div class="form-lbl">Email body</div>'
+    +'<div style="display:flex;gap:8px;align-items:flex-start;">'
+    +'<textarea id="copyBody" style="flex:1;padding:10px 12px;background:var(--off);border:2px solid var(--border);border-radius:8px;font-family:\'Nunito Sans\',sans-serif;font-size:13px;color:var(--text);resize:vertical;min-height:200px;outline:none;" readonly>'+body+'</textarea>'
+    +'<button class="btn btn-ghost btn-sm" onclick="copyText(\'copyBody\',this)">Copy</button>'
+    +'</div></div>';
+}
+
+function copyText(id,btn){
+  const el=document.getElementById(id);
+  if(!el)return;
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(el.value).then(()=>{btn.textContent='✓ Copied!';setTimeout(()=>btn.textContent='Copy',2000);});
+  } else {
+    el.select();document.execCommand('copy');
+    btn.textContent='✓ Copied!';setTimeout(()=>btn.textContent='Copy',2000);
+  }
+}
+
+
+function renderAdmin(){
+  if(!S.adminUnlocked)return;
+  const w=S.week;
+  document.getElementById('aRollover').value=w.rollover;
+  document.getElementById('aFee').value=w.fee;
+  document.getElementById('aLabel').value=w.label||'';
+  document.getElementById('aDeadline').value=w.deadline||'';
+  // update live pot display
+  const livePot=w.rollover+w.entries.length*w.fee;
+  document.getElementById('livePotVal').textContent='£'+livePot.toFixed(2);
+  document.getElementById('livePotBreakdown').innerHTML=
+    'Starting pot: <strong>£'+parseFloat(w.rollover||0).toFixed(2)+'</strong><br>'
+    +w.entries.length+' entr'+(w.entries.length===1?'y':'ies')+' × £'+w.fee.toFixed(2)+' = <strong>£'+(w.entries.length*w.fee).toFixed(2)+'</strong>';
+  renderFixBuilder(); renderResultsEntry(); renderAdminEntries(); renderSubscribersList(); renderEmailCopyArea(); renderClubFund(); renderFinances();
+}
+function renderFixBuilder(){
+  document.getElementById('fixBuilder').innerHTML=S.week.fixtures.map((f,i)=>'<div class="fix-row-b"><div class="fix-n">'+(i+1)+'</div><input class="fix-inp" placeholder="Home Team" value="'+escHtml(f.home)+'" oninput="S.week.fixtures['+i+'].home=this.value"><div class="fix-vs2">v</div><input class="fix-inp" placeholder="Away Team" value="'+escHtml(f.away)+'" oninput="S.week.fixtures['+i+'].away=this.value"></div>').join('');
+}
+function renderResultsEntry(){
+  const el=document.getElementById('resultsEntryInner'),w=S.week;
+  if(!w.published){el.innerHTML='<p style="color:var(--muted);font-weight:600;font-size:13px;">Publish the week first.</p>';return;}
+  el.innerHTML='<div style="display:flex;flex-direction:column;gap:9px;margin-bottom:14px;">'+w.fixtures.map((f,i)=>{const r=w.results[i],bg=r==='1'?'var(--blue-lt)':r==='X'?'var(--gold-lt)':r==='2'?'var(--red-lt)':'var(--off)';return'<div style="display:grid;grid-template-columns:26px 1fr auto;align-items:center;gap:11px;background:'+bg+';border:2px solid var(--border);border-radius:9px;padding:10px 13px;"><div style="font-family:\'Anton\',sans-serif;font-size:18px;color:var(--green);">'+(i+1)+'</div><div style="font-weight:800">'+f.home+' <span style="color:var(--muted);font-size:11px">v</span> '+f.away+'</div><div class="res-grp"><button class="res-btn '+(r==='1'?'on-1':'')+'" onclick="setRes('+i+',\'1\')">1</button><button class="res-btn '+(r==='X'?'on-X':'')+'" onclick="setRes('+i+',\'X\')">X</button><button class="res-btn '+(r==='2'?'on-2':'')+'" onclick="setRes('+i+',\'2\')">2</button></div></div>';}).join('')+'</div><div style="display:flex;gap:9px;flex-wrap:wrap;"><button class="btn btn-green btn-sm" onclick="saveResults()">Save Results</button><button class="btn btn-ghost btn-sm" onclick="clearResults()">Clear All</button></div><div id="resSaveMsg" style="margin-top:8px;"></div>';
+}
+function setRes(i,v){S.week.results[i]=S.week.results[i]===v?null:v;renderResultsEntry();}
+function saveResults(){
+  const n=S.week.results.filter(r=>r!==null).length;
+  S.week.status=n===7?'complete':'open';
+  saveS();
+  document.getElementById('resSaveMsg').innerHTML='<div class="alert a-green">✅ Results saved ('+n+'/7 entered)'+(n===7?' — week marked complete!':'')+'</div>';
+  updPot();
+}
+function clearResults(){S.week.results=Array(7).fill(null);S.week.status='open';saveS();renderResultsEntry();}
+function renderAdminEntries(){
+  const el=document.getElementById('adminEntries'),w=S.week;
+  if(!w.entries.length){el.innerHTML='<p style="color:var(--muted);font-weight:600;font-size:13px;">No entries yet.</p>';return;}
+  const hasR=w.results.some(r=>r!==null);
+  const scored=w.entries.map(e=>{let s=0;if(hasR)e.preds.forEach((p,i)=>{if(w.results[i]&&p===w.results[i])s++;});return{...e,score:s};});
+  const maxS=hasR&&scored.length?Math.max(...scored.map(x=>x.score)):0;
+  el.innerHTML='<div style="overflow-x:auto"><table class="mini-t"><thead><tr>'
+    +'<th>#</th><th>Player Name</th><th>Sheet Holder (Pays)</th><th>Predictions</th>'+(hasR?'<th>Score</th>':'')+'<th>Paid</th><th></th>'
+    +'</tr></thead><tbody>'
+    +scored.map((e,i)=>{
+      const isTop=hasR&&e.score===maxS&&maxS>0,isWin=hasR&&e.score===7;
+      return'<tr style="background:'+(isWin?'var(--gold-lt)':isTop?'var(--green-lt)':'')+'">'
+        +'<td style="color:var(--muted);font-weight:700">'+(isWin?'🏆':i+1)+'</td>'
+        +'<td style="font-weight:800">'+e.name+'</td>'
+        +'<td style="font-size:12px;font-weight:700;color:var(--green)">'+(e.sheetHolder||'<span style="color:var(--muted);font-weight:400">No holder linked</span>')+'</td>'
+        +'<td>'+e.preds.map((p,pi)=>{let cls='lb-chip lc-'+p;if(hasR&&w.results[pi])cls+=p===w.results[pi]?' lc-ok':' lc-ng';return'<span class="'+cls+'">'+p+'</span>';}).join('')+'</td>'
+        +(hasR?'<td><span class="score-big '+(isTop?'top':'')+'" style="font-size:20px">'+e.score+'</span><span style="color:var(--muted);font-size:10px">/7</span></td>':'')
+        +'<td><label style="cursor:pointer;font-weight:700;font-size:12px;display:flex;align-items:center;gap:5px;"><input type="checkbox" '+(e.paid?'checked':'')+' onchange="togglePaid('+i+')"> Paid</label></td>'
+        +'<td><button class="btn btn-red btn-sm" style="padding:3px 9px;font-size:11px" onclick="delEntry('+i+')">✕</button></td>'
+        +'</tr>';
+    }).join('')
+    +'</tbody></table></div>'
+    +'<div style="font-size:12px;color:var(--muted);margin-top:9px;font-weight:700;background:var(--off);border-radius:8px;padding:9px 13px;border:2px solid var(--border);">💰 Paid: <strong style="color:var(--green)">'+w.entries.filter(e=>e.paid).length+'</strong>/'+w.entries.length+' · Collected: <strong style="color:var(--green)">£'+(w.entries.filter(e=>e.paid).length*w.fee).toFixed(2)+'</strong> · Outstanding: <strong style="color:var(--red)">£'+(w.entries.filter(e=>!e.paid).length*w.fee).toFixed(2)+'</strong></div>';
+}
+function togglePaid(i){
+  const entry=S.week.entries[i];
+  const wasPaid=entry.paid;
+  entry.paid=!wasPaid;
+  const email=entry.email||null;
+  if(email){
+    const sub=S.subscribers.find(s=>s.email===email);
+    const registeredName=sub?sub.name:entry.name;
+    if(!S.finances[email]) S.finances[email]={name:registeredName,email,totalOwed:0,totalPaid:0,payments:[]};
+    S.finances[email].name=registeredName;
+    if(!wasPaid){
+      // Marking as paid — record payment only (owed is added on archive for unpaid entries)
+      S.finances[email].totalPaid=parseFloat((S.finances[email].totalPaid+S.week.fee).toFixed(2));
+      S.finances[email].payments.push({date:new Date().toLocaleDateString('en-GB'),amount:S.week.fee,note:'Cash — '+(S.week.label||'this week')});
+    } else {
+      // Unmarking — reverse the payment only
+      S.finances[email].totalPaid=parseFloat(Math.max(0,S.finances[email].totalPaid-S.week.fee).toFixed(2));
+      if(S.finances[email].payments.length) S.finances[email].payments.pop();
+    }
+  }
+  saveS();
+  renderAdminEntries();
+  renderFinances();
+}
+function delEntry(i){S.week.entries.splice(i,1);saveS();renderAdminEntries();renderAdmin();}
+function savePotSettings(){S.week.rollover=parseFloat(document.getElementById('aRollover').value)||0;S.week.fee=parseFloat(document.getElementById('aFee').value)||0.50;S.week.label=document.getElementById('aLabel').value;S.week.deadline=document.getElementById('aDeadline').value;saveS();updPot();renderAdmin();const s=document.getElementById('settingsSaved');s.style.display='inline';setTimeout(()=>s.style.display='none',2000);}
+function publishWeek(){const w=S.week,filled=w.fixtures.filter(f=>f.home&&f.away).length;if(filled<7){document.getElementById('publishMsg').innerHTML='<div class="alert a-red">⚠ Please fill in all 7 fixtures first ('+filled+'/7 filled).</div>';return;}w.published=true;w.status='open';w.label=document.getElementById('aLabel').value||w.label;w.deadline=document.getElementById('aDeadline').value||w.deadline;w.rollover=parseFloat(document.getElementById('aRollover').value)||0;w.fee=parseFloat(document.getElementById('aFee').value)||0.50;saveS();updPot();document.getElementById('publishMsg').innerHTML='<div class="alert a-green">✅ Week published! Players can now add their entries.</div>';renderAdmin();}
+function clearFix(){S.week.fixtures=Array(7).fill(0).map(()=>({home:'',away:''}));renderFixBuilder();}
+function archiveWeek(){confirm2('Archive this week?','Saves to history, calculates rollover, clears entries for next week.',()=>{
+  const w=S.week,entryTakings=w.entries.length*w.fee,hasR=w.results.some(r=>r!==null);
+  const won=w.entries.some(e=>{let s=0;if(hasR)e.preds.forEach((p,i)=>{if(w.results[i]&&p===w.results[i])s++;});return s===7;});
+  // If won: pot is claimed, rollover = 0
+  // If not won: carry forward the starting pot + 50% of entry takings
+  const entryRollover=parseFloat((entryTakings*0.5).toFixed(2));
+  const newRollover=won?0:parseFloat((w.rollover+entryRollover).toFixed(2));
+  // Club always keeps 50% of entry takings regardless of winner
+  if(entryRollover>0){
+    if(!S.clubFund) S.clubFund={total:0,log:[]};
+    S.clubFund.total=parseFloat((S.clubFund.total+entryRollover).toFixed(2));
+    S.clubFund.log.push({week:w.label||'Week',date:new Date().toLocaleDateString('en-GB'),entries:w.entries.length,takings:entryTakings,clubShare:entryRollover});
+  }
+  console.log('Archive: entries='+w.entries.length+' fee='+w.fee+' takings='+entryTakings+' startingPot='+w.rollover+' won='+won+' newRollover='+newRollover);
+  // Update finances — only add owed for entries NOT already marked paid
+  // (paid entries already have their payment recorded via the Paid checkbox)
+  w.entries.forEach(e=>{
+    const email=e.email||null;
+    if(email){
+      const sub=S.subscribers.find(s=>s.email===email);
+      const registeredName=sub?sub.name:e.name;
+      if(!S.finances[email]) S.finances[email]={name:registeredName,email,totalOwed:0,totalPaid:0,payments:[]};
+      S.finances[email].name=registeredName;
+      if(!e.paid){
+        // Only add to owed if not yet paid — paid entries were already handled by togglePaid
+        S.finances[email].totalOwed=parseFloat((S.finances[email].totalOwed+w.fee).toFixed(2));
+      }
+    }
+  });
+  S.history.push({...w,entries:[...w.entries],results:[...w.results],fixtures:w.fixtures.map(f=>({...f}))});
+  S.week={label:'',deadline:'',fee:w.fee,rollover:newRollover,fixtures:Array(7).fill(0).map(()=>({home:'',away:''})),results:Array(7).fill(null),entries:[],published:false,status:'setup'};
+  saveS();updPot();renderAdmin();showToast('Archived ✓  Rollover carried forward: £'+newRollover.toFixed(2));
+});}
+function resetAll(){confirm2('Reset ALL data?','Permanently deletes everything. Cannot be undone!',()=>{S={adminUnlocked:true,pw:S.pw,week:{label:'',deadline:'',fee:0.50,rollover:0,fixtures:Array(7).fill(0).map(()=>({home:'',away:''})),results:Array(7).fill(null),entries:[],published:false,status:'setup'},history:[],subscribers:S.subscribers||[]};saveS();updPot();renderAdmin();showToast('All data reset');});}
+
+// ═══════════════════════════════════════
+//  AUTH
+// ═══════════════════════════════════════
+function openAdminModal(){
+  if(S.adminUnlocked){
+    S.adminUnlocked=false;
+    document.getElementById('adminBtn').classList.remove('on');
+    document.getElementById('adminTabEl').classList.remove('show');
+    // if currently on sheet, re-render to hide admin content
+    if(document.getElementById('view-sheet').classList.contains('on')) renderSheet();
+    if(document.getElementById('view-history').classList.contains('on')) renderHistory();
+    showToast('Admin locked 🔒');
+    return;
+  }
+  document.getElementById('adminModal').classList.add('on');
+  setTimeout(()=>document.getElementById('pwInput').focus(),100);
+}
+function closeAdminModal(){document.getElementById('adminModal').classList.remove('on');document.getElementById('pwInput').value='';document.getElementById('pwErr').style.display='none';}
+function checkPw(){
+  if(document.getElementById('pwInput').value===S.pw){
+    S.adminUnlocked=true;
+    document.getElementById('adminBtn').classList.add('on');
+    document.getElementById('adminTabEl').classList.add('show');
+    closeAdminModal();
+    document.getElementById('adminTabEl').click();
+  }else{
+    document.getElementById('pwErr').style.display='block';
+    document.getElementById('pwInput').value='';
+    document.getElementById('pwInput').focus();
+  }
+}
+function confirm2(title,msg,cb){document.getElementById('confTitle').textContent=title;document.getElementById('confMsg').textContent=msg;document.getElementById('confYes').onclick=()=>{closeConf();cb();};document.getElementById('confModal').classList.add('on');}
+function closeConf(){document.getElementById('confModal').classList.remove('on');}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.opacity='1';t.style.pointerEvents='auto';clearTimeout(t._t);t._t=setTimeout(()=>{t.style.opacity='0';t.style.pointerEvents='none';},2500);}
+
+(async()=>{await loadS();updPot();renderSheet();})();
+</script>
+</body>
+</html>
